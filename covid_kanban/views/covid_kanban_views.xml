@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <act_window id="action_covid_kanban" name="Covid Kanban Board" res_model="covid.app" view_mode="kanban,tree,form" />
+    <!-- Menu item to open To-do Kanban Board -->
+    <menuitem id="menu_covid_kanban" name="Covid Kanban Board" parent="covid_app.l1_menu_covid_app" sequence="30" action="action_covid_kanban" />
+    <record id="Covid Kanban" model="ir.ui.view">
+        <field name="name">Covid Kanban</field>
+        <field name="model">covid.app</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="kanban_state" default_order="date_test" quick_create="false">
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card">
+                            <div class="oe_kanban_content">
+                                <h4>
+                                    <a type="open">
+                                        <field name="name" />
+                                    </a>
+                                </h4>
+                                <ul>
+                                    <li>
+                                        <field name="symptom" />
+                                    </li>
+                                    <li>
+                                        <field name="contacts" />
+                                    </li>
+                                </ul>
+                                <div class="oe_kanban_bottom_right">
+                                    <field name="kanban_state" widget="kanban_state_selection"/>
+                                </div>
+                                <div class="oe_kanban_footer_left">
+                                    <field name="priority" widget="priority"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+</odoo>

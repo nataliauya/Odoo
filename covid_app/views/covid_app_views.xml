@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<odoo>
+		<!-- Action to open To-do Task list -->
+		<act_window
+			id="action_covid_app"
+			name="Covid App"
+			res_model="covid.app"
+			view_mode="tree,form"
+		/>
+		<!-- top level menu: no parent -->
+		<menuitem
+			id="main_menu_covid_app"
+			name="Covid Application"
+		/>
+		<!-- A first level in the left side menu is needed
+		before using action= attribute -->
+		<menuitem
+			id="l1_menu_covid_app"
+			name="Covid App"
+			parent="main_menu_covid_app"
+		/>
+		<!-- Menu item to open To-do Task list -->
+		<menuitem
+			id="menu_covid_app"
+			name="Covid App"
+			parent="l1_menu_covid_app"
+			action="action_covid_app"
+		/>
+		<!-- Vista de listado -->
+		<record id="view_tree_covid_app" model="ir.ui.view">
+			<field name="name">Covid App Tree</field>
+			<field name="model">covid.app</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="name"/>
+					<field name="positive"/>
+		                        <field name="negative"/>
+                    			<field name="date_test"/>
+					<field name="department"/>
+				</tree>
+			</field>
+		</record>
+		<!-- Vista de búsqueda -->
+		<record id="view_filter_covid_app" model="ir.ui.view">
+			<field name="name">Covid App Filter</field>
+			<field name="model">covid.app</field>
+			<field name="arch" type="xml">
+				<search>
+					<field name="name"/>	
+					<filter name="positive" string="Positivos" domain="[('positive','=',True)]"/>
+				</search>
+			</field>
+		</record>
+		<!-- Vista de Formulario -->
+		<record id="view_form_covid_app" model="ir.ui.view">
+			<field name="name">Covid App Form</field>
+			<field name="model">covid.app</field>
+			<field name="arch" type="xml">
+				<form>
+					<header>
+						<button name="do_marcar" type="object" string="Marcar positivo" class="oe_highlight" />
+						<button name="do_limpiar" type="object" string="Borrar positivo" />
+					</header>
+					<sheet>
+						<group name="group_top">
+							<group name="group_left">
+								<field name="name"/>
+                                				<field name="date_test"/>
+								<field name="department"/>
+							</group>
+							<group name="group_right">
+								<field name="positive"/>
+                                				<field name="negative"/>
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+	</odoo>

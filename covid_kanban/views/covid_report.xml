@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Plantilla traducible -->
+    <template id = "report_covid_document">
+        <!-- Usaremos el idioma, o lang, configurado para
+        cada usuario responsabe de la tarea -->
+        <t t-set = "doc" t-value = "doc.with_context(lang = doc.contacts.lang)" />
+        <t t-call = "web.external_layout">
+            <div class="page">
+                <div class="row">
+                    <h3>
+                        <span t-field="doc.name"/>
+                    </h3>
+                </div>
+                <table class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th style="width:35%;">Positivo</th>
+                            <th style="width:35%;">Negativo</th>
+			    <th style="width:35%;">Sintomas</th>	
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="width:25%;">
+                                <span t-field="doc.positive"/>
+                            </td>
+                            <td class="text-rigth">
+                                <span t-field="doc.negative"/>
+                            </td>
+			    <td class="text-rigth">
+                                <span t-field="doc.symptom"/>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </t>
+    </template>
+    <!-- Plantilla principal -->
+    <template id = "report_covid">
+        <t t-call = "web.html_container">
+            <t t-foreach = "docs" t-as = "doc">
+                <t t-call = "covid_kanban.report_covid_document" t-lang = "doc.contacts.lang" />
+            </t>
+        </t>
+    </template>
+</odoo>
+

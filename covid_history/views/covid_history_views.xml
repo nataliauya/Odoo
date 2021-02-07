@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<act_window id="action_covid_history" name="Covid App History" res_model="covid.app" view_mode="tree,form,graph,pivot" />
+	
+	<menuitem id="menu_covid_history" name="Covid App History" parent="covid_app.l1_menu_covid_app" sequence="30" action="action_covid_history" />
+	<record id="view_form_covid_app_inherited" model="ir.ui.view">
+		<field name="name">Covid App form – History</field>
+		<field name="model">covid.app</field>
+		<field name="inherit_id" ref="covid_app.view_form_covid_app"/>
+		<field name="arch" type="xml">
+			<field name="negative" position="after">
+                		<field name="symptom" />
+            		</field>
+            		<field name="symptom" position="after">
+                		<field name="contacts" />
+            		</field>
+		</field>
+	</record>
+	<record id="view_tree_covid_app_inherited" model="ir.ui.view">
+		<field name="name">Covid App tree – History</field>
+		<field name="model">covid.app</field>
+		<field name="inherit_id" ref="covid_app.view_tree_covid_app"/>
+		<field name="arch" type="xml">
+			<field name="negative" position="after">
+                		<field name="symptom" />
+            		</field>
+            		<field name="symptom" position="after">
+                		<field name="contacts" />
+            		</field>
+		</field>
+	</record>
+	<record id="view_filter_covid_app_inherited" model="ir.ui.view">
+		<field name="name">Covid App filter – History</field>
+		<field name="model">covid.app</field>
+		<field name="inherit_id" ref="covid_app.view_filter_covid_app"/>
+		<field name="arch" type="xml">
+			<field name="name" position="after">
+				<field name="name" />
+				<filter name="filter_negative" string="Negativos" domain="[('negative','=',True)]" />
+			</field>
+		</field>
+	</record>
+	<record id="view_graph_covid_app" model="ir.ui.view">
+               <field name="name">Covid App Graph</field>
+               <field name="model">covid.app</field>
+               <field name="arch" type="xml">
+                   <graph>
+		       <field name="department"/>
+                       <field name="countP" type="measure"/>
+                       <field name="countN" type="measure"/>                       
+                   </graph>
+               </field>
+        </record>
+        <record id="view_pivot_covid_app" model="ir.ui.view">
+                <field name="name">Covid App Pivot</field>
+                <field name="model">covid.app</field>
+                <field name="arch" type="xml">
+                    <pivot>
+                        <field name="department" type="col"/>
+                        <field string= "Positivos" name="positive" type="row"/>
+                    </pivot>
+                </field>
+	</record>
+</odoo>

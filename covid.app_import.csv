@@ -1,0 +1,5 @@
+"Empleado","Positivo","Negativo","Sintomas","Contacto","Fecha del test","Departamento"
+"Ester","True","","Grave","Marc Demo","2021-02-09","Informática"
+"Paula","","True","Leve","Marc Demo","2021-02-08","Marketing"
+"Mario","True","","Grave","Marc Demo","2021-02-19","Recursos Humanos"
+"Raul","","True","Moderado","Marc Demo","2021-02-03","Informática"

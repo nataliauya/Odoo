@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <report
+    id="report_covid"
+    model="covid.app"
+    string="Empleado"
+    report_type="qweb-pdf"
+    name="covid_kanban.report_covid"
+    attachment_use="False"
+    file="covid_kanban.report_covid" />
+</odoo>

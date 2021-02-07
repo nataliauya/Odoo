@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record model="ir.actions.act_window" id="act_covid_graph">
+        <field name="name">Contagios por Departamento</field>
+        <field name="res_model">covid.app</field>
+        <field name="view_mode">graph</field>
+        <field name="view_id" ref="covid_history.view_graph_covid_app"/>
+    </record>
+    <record model="ir.actions.act_window" id="act_covid_pivot">
+        <field name="name">Contagios por Departamento</field>
+        <field name="res_model">covid.app</field>
+        <field name="view_mode">pivot</field>
+        <field name="view_id" ref="covid_history.view_pivot_covid_app"/>
+    </record>
+    <record model="ir.actions.act_window" id="act_covid_list">
+        <field name="name">Empleados</field>
+        <field name="res_model">covid.app</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record model="ir.ui.view" id="board_covid_form">
+        <field name="name">Covid Dashboard Form</field>
+        <field name="model">board.board</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Covid Dashboard">
+                <board style="2-1">
+                    <column>
+                        <action string="Contagios por Departamento" name="%(act_covid_graph)d" height="150" width="510"/>
+                        <action string="Contagios por Departamento" name="%(act_covid_pivot)d"/>
+                    </column>
+                    <column>
+                        <action string="Empleados" name="%(act_covid_list)d"/>
+                    </column>
+                </board>
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="open_board_covid">
+        <field name="name">Covid DashBoard</field>
+        <field name="res_model">board.board</field>
+        <field name="view_mode">form</field>
+        <field name="usage">menu</field>
+        <field name="view_id" ref="board_covid_form"/>
+    </record>
+    <menuitem name="Covid Dashboard" parent="covid_app.l1_menu_covid_app" action="open_board_covid" sequence="1" id="menu_covid_board"/>
+</odoo>
